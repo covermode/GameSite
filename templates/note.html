@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+
+{% block content %}
+<nav class="navbar navbar-light bg-light container note-navbar">
+    <h2 class="note-title">{{ note_title }}</h2>
+    <p class="note-rating" style="{%if note_rating > 0 %}color: green{%else%}color:gray{%endif%}">
+        {{ note_rating }}</p>
+    {% if current_user.is_authenticated %}
+    <a class="note-upvote" href="/upvote/{{ note_id }}">^</a>
+    <a class="note-downvote" href="/downvote/{{ note_id }}">V</a>
+    {% endif %}
+</nav>
+
+<div class="note-side-widget">
+<p>
+    <a class="note-author-nickname" href="/user_profile/{{ author_id }}">{{ author_nickname }}</a>
+    <p class="note-author-badges">
+    {% for badge in author_badges %}
+        <img src="/static/image/badge_ico/{{ badge.icon_src }}" alt="{{ badge.description }}"
+        title="{{ badge.description }}" style="max-width: 20px">
+    {% endfor %}
+
+</p>
+</div>
+
+<div class="note-content">
+    {{ note_content|safe }}
+</div>
+
+{% endblock %}

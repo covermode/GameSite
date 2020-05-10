@@ -1,0 +1,252 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet"
+          href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+          integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
+          crossorigin="anonymous">
+    <title>{{title}}</title>
+    <style>
+        body {
+            background: url({{ background_image }})
+        }
+        p {
+            margin-bottom: 0px
+        }
+        .no-margin {
+            margin-bottom: 0px;
+            margin-right: 0px;
+            margin-top: 0px;
+            margin-left: 0px;
+        }
+        .main-body {
+            padding: 10px 20px 20px 20px;
+            width: 850px;
+            min-height: 500px;
+
+            margin: 10px 30px;
+            border-radius: 0px;
+            background: #ffffff;
+            position: relative;
+        }
+        .main-body img {
+            max-width: 700px;
+        }
+        .side-widget {
+            position: absolute;
+            left: 870px;
+            width: 200px;
+            top: -10px;
+            padding-left: 5px;
+            padding-right: 5px;
+            padding-bottom: 5px;
+            padding-top: 5px;
+            border-top-width: 2px;
+            border-top-style: solid;
+            border-right-width: 2px;
+            border-right-style: solid;
+            border-bottom-width: 2px;
+            border-bottom-style: solid;
+            border-left-width: 2px;
+            border-left-style: solid;
+            background: #eeeeee
+        }
+        .note {
+            position: relative;
+            width: 800px;
+            height: 75px;
+            border-top-width: 2px;
+            border-top-style: solid;
+            border-right-width: 2px;
+            border-right-style: solid;
+            border-bottom-width: 2px;
+            border-bottom-style: solid;
+            border-left-width: 2px;
+            border-left-style: solid;
+            margin-bottom: 5px;
+        }
+        .note-title {
+            position: absolute;
+            font-size: 25px;
+            left: 5px;
+        }
+        .note-author {
+            position: absolute;
+            top: 30px;
+            left: 5px;
+            font-size: 12px;
+        }
+        .note-tags {
+            position: absolute;
+            left: 10px;
+            top: 50px;
+            color: #cccccc;
+            font-size: 15px;
+        }
+        .note-date {
+            position: absolute;
+            left: 725px;
+            top: 5px;
+            font-size: 12px;
+            color: #cccccc;
+            font-style: italic;
+        }
+        .note-navbar {
+            margin-left: -30px;
+            margin-top: -20px;
+            width: 870px;
+            height: 45px;
+            border-left-width: 2px;
+            border-left-style: solid;
+            border-top-width: 2px;
+            border-top-style: solid;
+            border-right-width: 2px;
+            border-right-style: solid;
+            border-bottom-width: 2px;
+            border-bottom-style: solid;
+            padding-top: 8px;
+            padding-bottom: 8px;
+            padding-right: 16px;
+            padding-left: 16px;
+        }
+        .note-rating {
+            position: absolute;
+            right: 20px;
+        }
+        .note-upvote {
+            position: absolute;
+            right: 50px;
+            top: 0px;
+        }
+        .note-downvote {
+            position: absolute;
+            right: 50px;
+            top: 20px;
+        }
+        .note-side-widget {
+            border-top-width: 2px;
+            border-top-style: solid;
+            border-right-width: 2px;
+            border-right-style: solid;
+            border-bottom-width: 2px;
+            border-bottom-style: solid;
+            border-left-width: 2px;
+            border-left-style: solid;
+            padding-left: 10px;
+            padding-top: 10px;
+            position: absolute;
+            background: #ccc;
+            left: -10px;
+            top: 45px;
+            width: 200px;
+            height: 100px;
+        }
+        .note-content {
+            position: relative;
+            max-width: 650px;
+            left: 175px;
+        }
+        .note-content img {
+            max-width: 650px;
+        }
+    </style>
+</head>
+<body>
+<main role="main" class="container">
+    <div class="above_body">
+        <div id="header" class="page_header">
+            <div class="logo_image container">
+                <img class="img-fluid" src="{{ logo }}">
+            </div>
+
+            <hr>
+        </div>
+        <div id="navbar" class="navbar">
+            <nav class="navbar navbar-light bg-light container">
+                <a class="navbar-brand no-margin">|</a>
+                <a class="navbar-brand no-margin" href="/">Main</a>
+                <a class="navbar-brand no-margin">|</a>
+                <a class="navbar-brand no-margin" href="/news">News</a>
+                <a class="navbar-brand no-margin">|</a>
+                <a class="navbar-brand no-margin" href="/download">Download</a>
+                <a class="navbar-brand no-margin">|</a>
+                <a class="navbar-brand no-margin" href="/wiki">Wiki</a>
+                <a class="navbar-brand no-margin">|</a>
+                <a class="navbar-brand no-margin" href="/forum">Forum</a>
+                <a class="navbar-brand no-margin">|</a>
+                <a class="navbar-brand no-margin" href="/about">About</a>
+                <a class="navbar-brand no-margin">|</a>
+                <a class="navbar-brand no-margin" href="/support">Support</a>
+                <a class="navbar-brand no-margin">|</a>
+            </nav>
+        </div>
+    </div>
+    <div class="main-body">
+{% if page_error %}
+        <div class="alert alert-danger" role="alert">
+            {{ page_error }}
+        </div>
+{% endif %}
+
+{% if page_message %}
+        <div class="alert alert-info" role="alert">
+            {{ page_message }}
+        </div>
+{% endif %}
+{% if current_user.is_authenticated %}
+        <div class="side-widget">
+            <p>
+                <!--Put here links for registered users-->
+                <a href="/office" style="color: black">{{ current_user.nickname }}</a><br>
+                <a href="/new_note" style="color: black; font-size: 10px">    * New note</a><br>
+                <a href="/donate" style="color: black; font-size: 10px">    * Donate</a><br>
+                <a class="btn btn-error" href="/logout">Logout</a>
+            </p>
+        </div>
+{% else %}
+{% if login_form %}
+        <div class="side-widget">
+            <p>
+                <h5>Login</h5>
+                <form action="" method="post">
+                    {{ login_form.hidden_tag() }}
+                    <p>
+                        {{ login_form.email.label }}<br>
+                        {{ login_form.email(class="form-control form-control-sm", type="email") }}
+                        {% for error in login_form.email.errors %}
+                            <div class="alert alert-danger" role="alert">
+                                {{ error }}
+                            </div>
+                        {% endfor %}
+                    </p>
+                    <p>
+                        {{ login_form.password.label }}<br>
+                        {{ login_form.password(class="form-control form-control-sm", type="password") }}
+                        {% for error in login_form.password.errors %}
+                            <div class="alert alert-danger" role="alert">
+                                {{ error }}
+                            </div>
+                        {% endfor %}
+                    </p>
+                    <p>{{ login_form.remember_me() }} {{ login_form.remember_me.label }}</p>
+
+                    <a href="/register">Register</a>
+                    <p>{{ login_form.submit_login(type="submit", class="btn btn-light") }}</p>
+                </form>
+            </p>
+        </div>
+{% endif %}
+{% endif %}
+
+        {% block content %}{% endblock %}
+    </div>
+    <div class="footer">
+        <footer>
+            <a href="/api" style="position: relative; left: 50%;">API</a>
+        </footer>
+    </div>
+</main>
+</body>
+</html>

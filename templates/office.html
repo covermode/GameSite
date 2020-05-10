@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+{% block content %}
+<p>
+{% if ava_link %}
+    <img src="{{ava_link}}" style="max-height: 200px">
+{% else %}
+    <a>No image for user available :(</a>
+{% endif %}
+<a href="change_ava">Change Ava</a>
+</p>
+<p>Name: {{ user_name }}</p>
+<p>Email: {{ user_email }}</p>
+
+{% endblock %}

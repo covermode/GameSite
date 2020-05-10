@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1>New note</h1>
+<form action="" method="post" novalidate>
+        {{ new_note_form.hidden_tag() }}
+
+        <p>
+            {{ new_note_form.title.label }}<br>
+            {{ new_note_form.title(class="form-control") }}<br>
+            {% for error in new_note_form.title.errors %}
+                <div class="alert alert-danger" role="alert">
+                {{ error }}
+                </div>
+            {% endfor %}
+        </p>
+
+        <p>
+            {{ new_note_form.content.label }}<br>
+            {{ new_note_form.content(class="form-control") }}<br>
+            {% for error in new_note_form.content.errors %}
+                <div class="alert alert-danger" role="alert">
+                {{ error }}
+                </div>
+            {% endfor %}
+        </p>
+
+        <p>
+            {{ new_note_form.tags.label }}<br>
+            {{ new_note_form.tags(class="form-control") }}<br>
+            {% for error in new_note_form.tags.errors %}
+                <div class="alert alert-danger" role="alert">
+                {{ error }}
+                </div>
+            {% endfor %}
+        </p>
+
+        </p>
+        <p>{{ new_note_form.submit_new_note(type="submit", class="btn btn-primary") }}</p>
+    </form>
+{% endblock %}

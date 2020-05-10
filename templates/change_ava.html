@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1>Change Ava</h1>
+<form action="" method="post" enctype="multipart/form-data" novalidate>
+        {{ change_ava_form.hidden_tag() }}
+
+        <p>
+            {{ change_ava_form.select_file.label }}<br>
+            {{ change_ava_form.select_file(class="form-control") }}<br>
+            {% for error in change_ava_form.select_file.errors %}
+                <div class="alert alert-danger" role="alert">
+                {{ error }}
+                </div>
+            {% endfor %}
+        </p>
+
+        <p>{{ change_ava_form.submit_new_ava(type="submit", class="btn btn-primary") }}</p>
+    </form>
+{% endblock %}

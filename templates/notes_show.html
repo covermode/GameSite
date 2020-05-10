@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<form action="" method="post" novalidate>
+    {{ search_form.hidden_tag() }}
+    <table style="width: 100%">
+        <tr>
+            <td>
+                {{ search_form.field(class="form-control", placeholder="enter here title of interesting note or tag name") }}
+                {% for error in search_form.field.errors %}
+                    <div class="alert alert-danger" role="alert">
+                    {{ error }}
+                    </div>
+                {% endfor %}
+            </td>
+            <td style="width: 85px">
+                {{ search_form.submit_note_search(type="submit", class="btn btn-primary") }}
+            </td>
+        </tr>
+    </table>
+
+</form>
+
+{% for note in notes %}
+    <div class="note">
+        <p class="note-title"><a href="/read_note/{{ note.id }}" style="color: black">
+            {{ note.title }}
+        </a></p>
+        <p class="note-author">by {{ note.author.nickname }}</p>
+        <p class="note-tags">
+            Tags:
+{% for tag in note.tags %}
+            <a>{% if not tag.name[0] == "_" %}{{ tag.name }};{%endif%}</a>
+{% endfor %}
+        </p>
+        <p class="note-date">Created: {{ note.created_date.date() }}</p>
+    </div>
+{% endfor %}
+
+{% endblock %}
