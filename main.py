@@ -26,9 +26,12 @@ def unmark(mark):
     return ret_html
 
 
+USE_NGROK = True
+
 app = Flask(__name__)
 api = Api(app)
-run_with_ngrok(app)
+if USE_NGROK:
+    run_with_ngrok(app)
 app.config["SECRET_KEY"] = "game_site_secret_key_yeah_bro"
 db = make_path("data/db/data.sqlite")           # path to database
 badge_ico_src = "/static/image/badge_ico"       # path to directory with all badge pics
@@ -396,8 +399,10 @@ def main():
     api.add_resource(note_resource.NoteListResource, '/api/notes')
     api.add_resource(user_resource.UserResource, '/api/user/<int:user_id>')
     api.add_resource(user_resource.UserListResource, '/api/users')
-    # app.run("localhost", 5000)
-    app.run()
+    if USE_NGROK:
+        app.run()
+    else:
+        app.run("localhost", 5000)
     return 0
 
 
